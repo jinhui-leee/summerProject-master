@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -88,9 +89,9 @@ public class Framework extends Canvas {
 
     private JButton descriptionButton;
 
-    private BufferedImage descriptionImg;
+    private ImageIcon descriptionImg;
 
-    private BufferedImage SelectCharacterImg;
+    private ImageIcon SelectCharacterImg;
 
     public Framework ()
     {
@@ -143,17 +144,40 @@ public class Framework extends Canvas {
         descriptionButton = new JButton(descriptionButtonImg);
 
         //시작버튼
-        startButton.setBounds(220,350,135,100);
+        startButton.setBounds(210,350,135,100);
         startButton.setBorderPainted(false);
         startButton.setContentAreaFilled(false);
         startButton.setFocusPainted(false);
+
+        startButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                startButton.setVisible(false);
+                descriptionButton.setVisible(false);
+                gameState = GameState.OPTIONS;
+                //게임 상태 : 캐릭터 선택
+            }
+        });
+
         add(startButton);
 
-        //설명 버튼튼
-        descriptionButton.setBounds(420,350,135,100);
+        //설명 버튼
+        descriptionButton.setBounds(410,350,135,100);
         descriptionButton.setBorderPainted(false);
         descriptionButton.setContentAreaFilled(false);
         descriptionButton.setFocusPainted(false);
+
+        descriptionButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                startButton.setVisible(false);
+                descriptionButton.setVisible(false);
+
+            }
+        });
+
         add(descriptionButton);
 
     }
@@ -260,8 +284,8 @@ public class Framework extends Canvas {
             case MAIN_MENU:
                 g2d.drawImage(moonLanderMenuImg, 0, 0, frameWidth, frameHeight, null);
                 g2d.setColor(Color.white);
-                g2d.drawString("Use w a d keys to controle the rocket.", frameWidth / 2 - 117, frameHeight / 2);
-                g2d.drawString("Press any key to start the game.", frameWidth / 2 - 100, frameHeight / 2 + 30);
+                g2d.drawString("게임시작에서는 캐릭터 선택이 가능합니다",270, frameHeight - 260);
+                g2d.drawString("스페이스 바를 누르면 바로 시작합니다",280,frameHeight - 230);
                 g2d.drawString("WWW.GAMETUTORIAL.NET", 7, frameHeight - 5);
                 break;
             case OPTIONS:
