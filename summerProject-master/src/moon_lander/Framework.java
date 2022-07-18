@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.*;
 
 /**
  * Framework that controls the game (Game.java) that created it, update it and draw it on the screen.
@@ -79,6 +80,17 @@ public class Framework extends Canvas {
      */
     private BufferedImage moonLanderMenuImg;
 
+    private ImageIcon startButtonImg;
+
+    private ImageIcon descriptionButtonImg;
+
+    private JButton startButton;
+
+    private JButton descriptionButton;
+
+    private BufferedImage descriptionImg;
+
+    private BufferedImage SelectCharacterImg;
 
     public Framework ()
     {
@@ -123,7 +135,30 @@ public class Framework extends Canvas {
         catch (IOException ex) {
             Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        startButtonImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\start.png");
+        descriptionButtonImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\description.png");
+
+        startButton = new JButton(startButtonImg);
+        descriptionButton = new JButton(descriptionButtonImg);
+
+        //시작버튼
+        startButton.setBounds(220,350,135,100);
+        startButton.setBorderPainted(false);
+        startButton.setContentAreaFilled(false);
+        startButton.setFocusPainted(false);
+        add(startButton);
+
+        //설명 버튼튼
+        descriptionButton.setBounds(420,350,135,100);
+        descriptionButton.setBorderPainted(false);
+        descriptionButton.setContentAreaFilled(false);
+        descriptionButton.setFocusPainted(false);
+        add(descriptionButton);
+
     }
+
+
 
     /**
      * In specific intervals of time (GAME_UPDATE_PERIOD) the game/logic is updated and then the game is drawn on the screen.
