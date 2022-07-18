@@ -214,6 +214,8 @@ public class Framework extends Canvas {
             switch (gameState)
             {
                 case PLAYING:
+                    startButton.setVisible(false);
+                    descriptionButton.setVisible(false);
                     gameTime += System.nanoTime() - lastTime;
 
                     game.UpdateGame(gameTime, mousePosition());
@@ -300,7 +302,7 @@ public class Framework extends Canvas {
                 g2d.drawString("WWW.GAMETUTORIAL.NET", 7, frameHeight - 5);
                 break;
             case OPTIONS:
-                //...
+
                 break;
             case GAME_CONTENT_LOADING:
                 g2d.setColor(Color.white);
