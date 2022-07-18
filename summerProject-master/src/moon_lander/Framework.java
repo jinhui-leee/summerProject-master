@@ -89,7 +89,7 @@ public class Framework extends Canvas {
 
     private JButton descriptionButton;
 
-    private ImageIcon descriptionImg;
+    private BufferedImage descriptionImg;
 
     private ImageIcon SelectCharacterImg;
 
@@ -174,11 +174,23 @@ public class Framework extends Canvas {
                 super.mousePressed(e);
                 startButton.setVisible(false);
                 descriptionButton.setVisible(false);
-
+                gameDescription();
             }
         });
 
         add(descriptionButton);
+
+    }
+
+    private void gameDescription() {
+        try
+        {
+            URL moonLanderMenuImgUrl = this.getClass().getResource("/resources/images/game_description.png");
+            moonLanderMenuImg = ImageIO.read(moonLanderMenuImgUrl);
+        }
+        catch (IOException ex) {
+            Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -284,8 +296,7 @@ public class Framework extends Canvas {
             case MAIN_MENU:
                 g2d.drawImage(moonLanderMenuImg, 0, 0, frameWidth, frameHeight, null);
                 g2d.setColor(Color.white);
-                g2d.drawString("게임시작에서는 캐릭터 선택이 가능합니다",270, frameHeight - 260);
-                g2d.drawString("스페이스 바를 누르면 바로 시작합니다",280,frameHeight - 230);
+                g2d.drawString("스페이스 바를 누르면 바로 시작합니다",580,frameHeight - 5);
                 g2d.drawString("WWW.GAMETUTORIAL.NET", 7, frameHeight - 5);
                 break;
             case OPTIONS:
