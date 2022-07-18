@@ -155,8 +155,7 @@ public class Framework extends Canvas {
                 super.mousePressed(e);
                 startButton.setVisible(false);
                 descriptionButton.setVisible(false);
-                gameState = GameState.OPTIONS;
-                //게임 상태 : 캐릭터 선택
+                selectCharacter();
             }
         });
 
@@ -186,6 +185,18 @@ public class Framework extends Canvas {
         try
         {
             URL moonLanderMenuImgUrl = this.getClass().getResource("/resources/images/game_description.png");
+            moonLanderMenuImg = ImageIO.read(moonLanderMenuImgUrl);
+        }
+        catch (IOException ex) {
+            Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    private void selectCharacter() {
+        try
+        {
+            URL moonLanderMenuImgUrl = this.getClass().getResource("/resources/images/rocket_select.png");
             moonLanderMenuImg = ImageIO.read(moonLanderMenuImgUrl);
         }
         catch (IOException ex) {
@@ -229,7 +240,7 @@ public class Framework extends Canvas {
                     //...
                     break;
                 case OPTIONS:
-                    //...
+
                     break;
                 case GAME_CONTENT_LOADING:
                     //...
@@ -302,7 +313,7 @@ public class Framework extends Canvas {
                 g2d.drawString("WWW.GAMETUTORIAL.NET", 7, frameHeight - 5);
                 break;
             case OPTIONS:
-
+                //...
                 break;
             case GAME_CONTENT_LOADING:
                 g2d.setColor(Color.white);
