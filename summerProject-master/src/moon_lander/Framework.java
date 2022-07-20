@@ -1,9 +1,8 @@
 package moon_lander;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -11,6 +10,8 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.plaf.BorderUIResource;
 
 /**
  * Framework that controls the game (Game.java) that created it, update it and draw it on the screen.
@@ -54,7 +55,7 @@ public class Framework extends Canvas {
     /**
      * Possible states of the game
      */
-    public static enum GameState{STARTING, VISUALIZING, GAME_CONTENT_LOADING, MAIN_MENU, OPTIONS, PLAYING, GAMEOVER, DESTROYED} //열거체 GameState
+    public static enum GameState{STARTING, VISUALIZING, GAME_CONTENT_LOADING, MAIN_MENU, DESCRIPTION, OPTIONS, PLAYING, GAMEOVER, DESTROYED} //열거체 GameState
     /**
      * Current state of the game
      */
@@ -78,6 +79,51 @@ public class Framework extends Canvas {
      * Image for menu.
      */
     private BufferedImage moonLanderMenuImg;
+
+    private BufferedImage moonLanderDescriptionImg;
+
+    private BufferedImage moonLanderOptionImg;
+
+
+    private ImageIcon startButtonImg;
+
+    private ImageIcon descriptionButtonImg;
+
+    private JButton startButton;
+
+    private JButton descriptionButton;
+
+    //로켓 선택 결과
+    public static enum RocketChoice{ORI, RED, YELLOW, GREEN, BLUE, PINK}
+
+    public static RocketChoice rocketChoice;
+
+    //로켓(캐릭터) 선택 버튼 image
+    ImageIcon rocketImg;
+
+    ImageIcon redRocketImg;
+
+    ImageIcon yellowRocketImg;
+
+    ImageIcon greenRocketImg;
+
+    ImageIcon blueRocketImg;
+
+    ImageIcon pinkRocketImg;
+
+    //로켓 선택 버튼
+    private JButton rocketButton;
+
+    private JButton redRocketButton;
+
+    private JButton yellowRocketButton;
+
+    private JButton greenRocketButton;
+
+    private JButton blueRocketButton;
+
+    private JButton pinkRocketButton;
+
 
 
     public Framework ()
@@ -115,6 +161,7 @@ public class Framework extends Canvas {
      */
     private void LoadContent()
     {
+        //시작 배경화면
         try
         {
             URL moonLanderMenuImgUrl = this.getClass().getResource("/resources/images/menu.jpg");
@@ -123,7 +170,221 @@ public class Framework extends Canvas {
         catch (IOException ex) {
             Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        //로켓 선택 화면
+        try
+        {
+            URL moonLanderOptionImgUrl = this.getClass().getResource("/resources/images/rocket_select.png");
+            moonLanderOptionImg = ImageIO.read(moonLanderOptionImgUrl);
+
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //설명 화면
+        try
+        {
+            URL moonLanderDescriptionUrl = this.getClass().getResource("/resources/images/game_description.png");
+            moonLanderDescriptionImg = ImageIO.read(moonLanderDescriptionUrl);
+        }
+        catch (IOException ex) {
+            Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+        startButtonImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\start.png");
+        descriptionButtonImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\description.png");
+
+        startButton = new JButton(startButtonImg);
+        descriptionButton = new JButton(descriptionButtonImg);
+
+        //시작버튼
+        startButton.setBounds(210,350,135,100);
+        startButton.setBorderPainted(false);
+        startButton.setContentAreaFilled(false);
+        startButton.setFocusPainted(false);
+
+        startButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                startButton.setVisible(false);
+                descriptionButton.setVisible(false);
+                descriptionButton.setFocusable(false);
+                startButton.setFocusable(false);
+                gameState = GameState.OPTIONS;
+                selectCharacter();
+            }
+        });
+
+        add(startButton);
+
+        //설명 버튼
+        descriptionButton.setBounds(410,350,135,100);
+        descriptionButton.setBorderPainted(false);
+        descriptionButton.setContentAreaFilled(false);
+        descriptionButton.setFocusPainted(false);
+
+        descriptionButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                startButton.setVisible(false);
+                descriptionButton.setVisible(false);
+                descriptionButton.setFocusable(false);
+                startButton.setFocusable(false);
+                gameState = GameState.DESCRIPTION;
+
+            }
+        });
+
+        add(descriptionButton);
+
     }
+
+    private void rocketRemove()
+    {
+        rocketButton.setVisible(false);
+        redRocketButton.setVisible(false);
+        yellowRocketButton.setVisible(false);
+        greenRocketButton.setVisible(false);
+        blueRocketButton.setVisible(false);
+        pinkRocketButton.setVisible(false);
+
+    }
+
+    private void buttonLoseFocus() {
+
+        rocketButton.setFocusable(false);
+        redRocketButton.setFocusable(false);
+        yellowRocketButton.setFocusable(false);
+        greenRocketButton.setFocusable(false);
+        blueRocketButton.setFocusable(false);
+        pinkRocketButton.setFocusable(false);
+    }
+
+    private void selectCharacter()
+    {
+        //rocket(기본)
+        rocketImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\rocket.png");
+        rocketButton = new JButton(rocketImg);
+        rocketButton.setBounds(200,200,50,100);
+        rocketButton.setBorderPainted(false);
+        rocketButton.setContentAreaFilled(false);
+        rocketButton.setFocusPainted(false);
+        rocketButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                rocketChoice = RocketChoice.ORI;
+                buttonLoseFocus();
+                rocketRemove();
+                newGame();
+            }
+        });
+
+        add(rocketButton);
+
+        //red rocket
+        redRocketImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\red_rocket.png");
+        redRocketButton = new JButton(redRocketImg);
+        redRocketButton.setBounds(350,200,50,100);
+        redRocketButton.setBorderPainted(false);
+        redRocketButton.setContentAreaFilled(false);
+        redRocketButton.setFocusPainted(false);
+        redRocketButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                rocketChoice = RocketChoice.RED;
+                buttonLoseFocus();
+                rocketRemove();
+                newGame();
+            }
+        });
+        add(redRocketButton);
+
+        //yellow rocket
+        yellowRocketImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\yellow_rocket.png");
+        yellowRocketButton = new JButton(yellowRocketImg);
+        yellowRocketButton.setBounds(500,200,50,100);
+        yellowRocketButton.setBorderPainted(false);
+        yellowRocketButton.setContentAreaFilled(false);
+        yellowRocketButton.setFocusPainted(false);
+        yellowRocketButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                rocketChoice = RocketChoice.YELLOW;
+                buttonLoseFocus();
+                rocketRemove();
+                newGame();
+            }
+        });
+        add(yellowRocketButton);
+
+        //green rocket
+        greenRocketImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\green_rocket.png");
+        greenRocketButton = new JButton(greenRocketImg);
+        greenRocketButton.setBounds(200,350,50,100);
+        greenRocketButton.setBorderPainted(false);
+        greenRocketButton.setContentAreaFilled(false);
+        greenRocketButton.setFocusPainted(false);
+        greenRocketButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                rocketChoice = RocketChoice.GREEN;
+                buttonLoseFocus();
+                rocketRemove();
+                newGame();
+            }
+        });
+        add(greenRocketButton);
+
+        //blue rocket
+        blueRocketImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\blue_rocket.png");
+        blueRocketButton = new JButton(blueRocketImg);
+        blueRocketButton.setBounds(350,350,50,100);
+        blueRocketButton.setBorderPainted(false);
+        blueRocketButton.setContentAreaFilled(false);
+        blueRocketButton.setFocusPainted(false);
+        blueRocketButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                rocketChoice = RocketChoice.BLUE;
+                buttonLoseFocus();
+                rocketRemove();
+                newGame();
+            }
+        });
+        add(blueRocketButton);
+
+        //pink rocket
+        pinkRocketImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\pink_rocket.png");
+        pinkRocketButton = new JButton(pinkRocketImg);
+        pinkRocketButton.setBounds(500,350,50,100);
+        pinkRocketButton.setBorderPainted(false);
+        pinkRocketButton.setContentAreaFilled(false);
+        pinkRocketButton.setFocusPainted(false);
+        pinkRocketButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                rocketChoice = RocketChoice.PINK;
+                buttonLoseFocus();
+                rocketRemove();
+                newGame();
+            }
+        });
+        add(pinkRocketButton);
+
+    }
+
+
 
     /**
      * In specific intervals of time (GAME_UPDATE_PERIOD) the game/logic is updated and then the game is drawn on the screen.
@@ -225,12 +486,16 @@ public class Framework extends Canvas {
             case MAIN_MENU:
                 g2d.drawImage(moonLanderMenuImg, 0, 0, frameWidth, frameHeight, null);
                 g2d.setColor(Color.white);
-                g2d.drawString("Use w a d keys to controle the rocket.", frameWidth / 2 - 117, frameHeight / 2);
-                g2d.drawString("Press any key to start the game.", frameWidth / 2 - 100, frameHeight / 2 + 30);
+                g2d.drawString("시작과 설명 중 하나를 눌러주세요",600,frameHeight - 5);
                 g2d.drawString("WWW.GAMETUTORIAL.NET", 7, frameHeight - 5);
                 break;
+            case DESCRIPTION:
+                g2d.drawImage(moonLanderDescriptionImg, 0, 0, frameWidth, frameHeight, null);
+                break;
             case OPTIONS:
-                //...
+                g2d.drawImage(moonLanderOptionImg, 0, 0, frameWidth, frameHeight, null);
+                g2d.setColor(Color.white);
+                g2d.drawString("스페이스 바를 누르면 기본 로켓으로 시작합니다",270, frameHeight - 5);
                 break;
             case GAME_CONTENT_LOADING:
                 g2d.setColor(Color.white);
@@ -300,6 +565,13 @@ public class Framework extends Canvas {
         switch (gameState)
         {
             case MAIN_MENU:
+                newGame(); //원래 있던 곳
+                break;
+            case DESCRIPTION:
+                gameState = GameState.OPTIONS;
+                selectCharacter();
+                break;
+            case OPTIONS:
                 newGame();
                 break;
             case GAMEOVER:
