@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Enemy {
-    Image enemyImg = new ImageIcon("src/images/star.png").getImage();
+    Image enemyImg = new ImageIcon("src/images/enemy.png").getImage();
     int x, y;
     int width = enemyImg.getWidth(null);
     int height = enemyImg.getHeight(null);

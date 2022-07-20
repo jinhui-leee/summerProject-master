@@ -38,9 +38,11 @@ public class Game {
      */
     private BufferedImage redBorderImg;
 
-    MP3Player failMusic;
+    private MP3Player failMusic;
 
-    MP3Player successMusic;
+    private MP3Player successMusic;
+
+    Enemy enemy;
 
 
     public Game()
