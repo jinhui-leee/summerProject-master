@@ -34,7 +34,7 @@ public class Framework extends Canvas {
      * Time of one second in nanoseconds.
      * 1 second = 1 000 000 000 nanoseconds
      */
-    public static final long secInNanosec = 1000000000L;
+    public static long secInNanosec = 1000000000L;
 
     /**
      * Time of one millisecond in nanoseconds.
@@ -64,7 +64,7 @@ public class Framework extends Canvas {
     /**
      * Elapsed game time in nanoseconds.
      */
-    private long gameTime;
+    static long gameTime;
     // It is used for calculating elapsed time.
     private long lastTime;
 
@@ -116,7 +116,7 @@ public class Framework extends Canvas {
     private void Initialize()
     {
         //background music player
-        mp3Background = new MP3Player("C:\\Users\\user\\IdeaProjects\\moon_lander\\moon_lander\\src\\resources\\mp3\\background.wav", true);
+        mp3Background = new MP3Player("C:\\summerProject-master\\summerProject-master\\src\\resources\\mp3\\background.wav", true);
         mp3Background.start();
 
     }
@@ -136,8 +136,8 @@ public class Framework extends Canvas {
             Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        startButtonImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\start.png");
-        descriptionButtonImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\description.png");
+        startButtonImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\start.png");
+        descriptionButtonImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\description.png");
 
         startButton = new JButton(startButtonImg);
         descriptionButton = new JButton(descriptionButtonImg);

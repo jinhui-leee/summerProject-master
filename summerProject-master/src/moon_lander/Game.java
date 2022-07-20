@@ -42,6 +42,10 @@ public class Game {
 
     MP3Player successMusic;
 
+    //minimum time
+
+    private long minimum;
+
 
     public Game()
     {
@@ -61,6 +65,15 @@ public class Game {
         threadForInitGame.start();
     }
 
+    public void timeCompare()
+    {
+        long[] timeRecord = new long[2];
+        timeRecord[0] = minimum;
+        timeRecord[1] = Framework.gameTime / Framework.secInNanosec;
+        if(0 < timeRecord[1] && timeRecord[1] > minimum) {
+            minimum = timeRecord[1];
+        }
+    }
 
     /**
      * Set variables and objects for the game.
@@ -167,7 +180,9 @@ public class Game {
             g2d.drawString("You have successfully landed!", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3);
             g2d.drawString("You have landed in " + gameTime / Framework.secInNanosec + " seconds.", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3 + 20);
 
-            successMusic = new MP3Player("C:\\Users\\user\\IdeaProjects\\moon_lander\\moon_lander\\src\\resources\\mp3\\success.wav",false);
+            g2d.drawString("You have minimum record " + minimum + " seconds.", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3 + 40);
+
+            successMusic = new MP3Player("C:\\summerProject-master\\summerProject-master\\src\\resources\\mp3\\success.wav",false);
             successMusic.start();
 
         }
@@ -178,7 +193,7 @@ public class Game {
             g2d.drawImage(redBorderImg, 0, 0, Framework.frameWidth, Framework.frameHeight, null);
 
             //fail music play
-            failMusic = new MP3Player("C:\\Users\\user\\IdeaProjects\\moon_lander\\moon_lander\\src\\resources\\mp3\\fail.wav", false);
+            failMusic = new MP3Player("C:\\summerProject-master\\summerProject-master\\src\\resources\\mp3\\fail.wav", false);
             failMusic.start();
 
 
