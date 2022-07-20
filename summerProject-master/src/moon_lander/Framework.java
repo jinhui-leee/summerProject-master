@@ -565,14 +565,12 @@ public class Framework extends Canvas {
         switch (gameState)
         {
             case MAIN_MENU:
-                newGame(); //원래 있던 곳
                 break;
             case DESCRIPTION:
                 gameState = GameState.OPTIONS;
                 selectCharacter();
                 break;
             case OPTIONS:
-                newGame();
                 break;
             case GAMEOVER:
                 if(e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER)
