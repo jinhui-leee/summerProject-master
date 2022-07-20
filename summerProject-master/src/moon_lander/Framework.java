@@ -64,7 +64,7 @@ public class Framework extends Canvas {
     /**
      * Elapsed game time in nanoseconds.
      */
-    private long gameTime;
+    static long gameTime;
     // It is used for calculating elapsed time.
     private long lastTime;
 

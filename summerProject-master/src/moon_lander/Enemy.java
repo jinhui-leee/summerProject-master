@@ -22,6 +22,7 @@ public class Enemy {
 
     public Enemy(int x, int y) {
         loadContent();
+
         this.x = x;
         this.y = y;
     }
