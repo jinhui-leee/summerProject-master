@@ -212,6 +212,8 @@ public class Framework extends Canvas {
                 super.mousePressed(e);
                 startButton.setVisible(false);
                 descriptionButton.setVisible(false);
+                descriptionButton.setFocusable(false);
+                startButton.setFocusable(false);
                 gameState = GameState.OPTIONS;
                 selectCharacter();
             }
@@ -231,6 +233,8 @@ public class Framework extends Canvas {
                 super.mousePressed(e);
                 startButton.setVisible(false);
                 descriptionButton.setVisible(false);
+                descriptionButton.setFocusable(false);
+                startButton.setFocusable(false);
                 gameState = GameState.DESCRIPTION;
 
             }
@@ -248,6 +252,17 @@ public class Framework extends Canvas {
         greenRocketButton.setVisible(false);
         blueRocketButton.setVisible(false);
         pinkRocketButton.setVisible(false);
+
+    }
+
+    private void buttonLoseFocus() {
+
+        rocketButton.setFocusable(false);
+        redRocketButton.setFocusable(false);
+        yellowRocketButton.setFocusable(false);
+        greenRocketButton.setFocusable(false);
+        blueRocketButton.setFocusable(false);
+        pinkRocketButton.setFocusable(false);
     }
 
     private void selectCharacter()
@@ -264,7 +279,9 @@ public class Framework extends Canvas {
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
                 rocketChoice = RocketChoice.ORI;
-
+                buttonLoseFocus();
+                rocketRemove();
+                newGame();
             }
         });
 
@@ -282,9 +299,11 @@ public class Framework extends Canvas {
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
                 rocketChoice = RocketChoice.RED;
+                buttonLoseFocus();
+                rocketRemove();
+                newGame();
             }
         });
-
         add(redRocketButton);
 
         //yellow rocket
@@ -294,6 +313,16 @@ public class Framework extends Canvas {
         yellowRocketButton.setBorderPainted(false);
         yellowRocketButton.setContentAreaFilled(false);
         yellowRocketButton.setFocusPainted(false);
+        yellowRocketButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                rocketChoice = RocketChoice.YELLOW;
+                buttonLoseFocus();
+                rocketRemove();
+                newGame();
+            }
+        });
         add(yellowRocketButton);
 
         //green rocket
@@ -303,6 +332,16 @@ public class Framework extends Canvas {
         greenRocketButton.setBorderPainted(false);
         greenRocketButton.setContentAreaFilled(false);
         greenRocketButton.setFocusPainted(false);
+        greenRocketButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                rocketChoice = RocketChoice.GREEN;
+                buttonLoseFocus();
+                rocketRemove();
+                newGame();
+            }
+        });
         add(greenRocketButton);
 
         //blue rocket
@@ -312,6 +351,16 @@ public class Framework extends Canvas {
         blueRocketButton.setBorderPainted(false);
         blueRocketButton.setContentAreaFilled(false);
         blueRocketButton.setFocusPainted(false);
+        blueRocketButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                rocketChoice = RocketChoice.BLUE;
+                buttonLoseFocus();
+                rocketRemove();
+                newGame();
+            }
+        });
         add(blueRocketButton);
 
         //pink rocket
@@ -321,9 +370,17 @@ public class Framework extends Canvas {
         pinkRocketButton.setBorderPainted(false);
         pinkRocketButton.setContentAreaFilled(false);
         pinkRocketButton.setFocusPainted(false);
+        pinkRocketButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                rocketChoice = RocketChoice.PINK;
+                buttonLoseFocus();
+                rocketRemove();
+                newGame();
+            }
+        });
         add(pinkRocketButton);
-
-
 
     }
 
@@ -508,7 +565,7 @@ public class Framework extends Canvas {
         switch (gameState)
         {
             case MAIN_MENU:
-                //newGame(); 원래 있던 곳
+                newGame(); //원래 있던 곳
                 break;
             case DESCRIPTION:
                 gameState = GameState.OPTIONS;
