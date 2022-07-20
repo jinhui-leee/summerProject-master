@@ -10,6 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
+import static moon_lander.Framework.gameTime;
+
 /**
  * Actual game.
  *
@@ -38,9 +40,13 @@ public class Game {
      */
     private BufferedImage redBorderImg;
 
-    MP3Player failMusic;
+    private MP3Player failMusic;
 
-    MP3Player successMusic;
+    private MP3Player successMusic;
+
+    private long minimum;
+
+    Enemy enemy;
 
 
     public Game()
@@ -61,7 +67,18 @@ public class Game {
         threadForInitGame.start();
     }
 
+    public void timeCompare() {
 
+        if (minimum == 0) {
+            minimum = gameTime;
+        }
+        else
+        {
+            if (0 < gameTime && minimum > gameTime) {
+                minimum = gameTime;
+            }
+        }
+    }
     /**
      * Set variables and objects for the game.
      */
@@ -166,6 +183,9 @@ public class Game {
         {
             g2d.drawString("You have successfully landed!", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3);
             g2d.drawString("You have landed in " + gameTime / Framework.secInNanosec + " seconds.", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3 + 20);
+            g2d.drawString("You have minimum record " + minimum / Framework.secInNanosec + " seconds.", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3 + 40);
+
+            timeCompare();
 
             successMusic = new MP3Player("C:\\Users\\user\\IdeaProjects\\moon_lander\\moon_lander\\src\\resources\\mp3\\success.wav",false);
             successMusic.start();
