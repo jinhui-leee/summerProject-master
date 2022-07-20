@@ -183,6 +183,8 @@ public class Framework extends Canvas {
                     game.UpdateGame(gameTime, mousePosition());
 
                     lastTime = System.nanoTime();
+
+                    //game.timeCompare();
                     break;
                 case GAMEOVER:
                     //...
@@ -222,6 +224,7 @@ public class Framework extends Canvas {
                     {
                         visualizingTime += System.nanoTime() - lastVisualizingTime;
                         lastVisualizingTime = System.nanoTime();
+
                     }
                     break;
             }
