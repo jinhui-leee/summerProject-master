@@ -327,7 +327,29 @@ public class PlayerRocket {
             // If player hold down a W key we draw rocket fire.
             if(Canvas.keyboardKeyState(KeyEvent.VK_W))
                 g2d.drawImage(rocketFireImg, x + 12, y + 66, null);
-            g2d.drawImage(rocketImg, x, y, null);
+            switch (Framework.rocketChoice)
+            {
+                case ORI:
+                    g2d.drawImage(rocketImg, x, y, null);
+                    break;
+                case RED:
+                    g2d.drawImage(redRocketImg, x, y, null);
+                    break;
+                case YELLOW:
+                    g2d.drawImage(yellowRocketImg, x, y, null);
+                    break;
+                case GREEN:
+                    g2d.drawImage(greenRocketImg, x, y, null);
+                    break;
+                case BLUE:
+                    g2d.drawImage(blueRocketImg, x, y, null);
+                    break;
+                case PINK:
+                    g2d.drawImage(pinkRocketImg, x, y, null);
+                    break;
+            }
+
+
         }
     }
     
