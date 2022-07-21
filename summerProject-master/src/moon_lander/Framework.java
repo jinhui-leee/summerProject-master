@@ -150,7 +150,7 @@ public class Framework extends Canvas {
     private void Initialize()
     {
         //background music player
-        mp3Background = new MP3Player("C:\\Users\\user\\IdeaProjects\\moon_lander\\moon_lander\\src\\resources\\mp3\\background.wav", true);
+        mp3Background = new MP3Player("C:\\summerProject-master\\summerProject-master\\src\\resources\\mp3\\background.wav", true);
         mp3Background.start();
 
     }
@@ -194,8 +194,8 @@ public class Framework extends Canvas {
         }
 
 
-        startButtonImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\start.png");
-        descriptionButtonImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\description.png");
+        startButtonImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\start.png");
+        descriptionButtonImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\description.png");
 
         startButton = new JButton(startButtonImg);
         descriptionButton = new JButton(descriptionButtonImg);
@@ -268,7 +268,7 @@ public class Framework extends Canvas {
     private void selectCharacter()
     {
         //rocket(기본)
-        rocketImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\rocket.png");
+        rocketImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\rocket.png");
         rocketButton = new JButton(rocketImg);
         rocketButton.setBounds(200,200,50,100);
         rocketButton.setBorderPainted(false);
@@ -288,7 +288,7 @@ public class Framework extends Canvas {
         add(rocketButton);
 
         //red rocket
-        redRocketImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\red_rocket.png");
+        redRocketImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\red_rocket.png");
         redRocketButton = new JButton(redRocketImg);
         redRocketButton.setBounds(350,200,50,100);
         redRocketButton.setBorderPainted(false);
@@ -307,7 +307,7 @@ public class Framework extends Canvas {
         add(redRocketButton);
 
         //yellow rocket
-        yellowRocketImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\yellow_rocket.png");
+        yellowRocketImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\yellow_rocket.png");
         yellowRocketButton = new JButton(yellowRocketImg);
         yellowRocketButton.setBounds(500,200,50,100);
         yellowRocketButton.setBorderPainted(false);
@@ -326,7 +326,7 @@ public class Framework extends Canvas {
         add(yellowRocketButton);
 
         //green rocket
-        greenRocketImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\green_rocket.png");
+        greenRocketImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\green_rocket.png");
         greenRocketButton = new JButton(greenRocketImg);
         greenRocketButton.setBounds(200,350,50,100);
         greenRocketButton.setBorderPainted(false);
@@ -345,7 +345,7 @@ public class Framework extends Canvas {
         add(greenRocketButton);
 
         //blue rocket
-        blueRocketImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\blue_rocket.png");
+        blueRocketImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\blue_rocket.png");
         blueRocketButton = new JButton(blueRocketImg);
         blueRocketButton.setBounds(350,350,50,100);
         blueRocketButton.setBorderPainted(false);
@@ -364,7 +364,7 @@ public class Framework extends Canvas {
         add(blueRocketButton);
 
         //pink rocket
-        pinkRocketImg = new ImageIcon("C:\\Users\\user\\IdeaProjects\\summerProject-master\\summerProject-master\\src\\resources\\images\\pink_rocket.png");
+        pinkRocketImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\pink_rocket.png");
         pinkRocketButton = new JButton(pinkRocketImg);
         pinkRocketButton.setBounds(500,350,50,100);
         pinkRocketButton.setBorderPainted(false);

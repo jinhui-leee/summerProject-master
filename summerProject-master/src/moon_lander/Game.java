@@ -187,7 +187,7 @@ public class Game {
 
             timeCompare();
 
-            successMusic = new MP3Player("C:\\Users\\user\\IdeaProjects\\moon_lander\\moon_lander\\src\\resources\\mp3\\success.wav",false);
+            successMusic = new MP3Player("C:\\summerProject-master\\summerProject-master\\src\\resources\\mp3\\success.wav",false);
             successMusic.start();
 
         }
@@ -198,7 +198,7 @@ public class Game {
             g2d.drawImage(redBorderImg, 0, 0, Framework.frameWidth, Framework.frameHeight, null);
 
             //fail music play
-            failMusic = new MP3Player("C:\\Users\\user\\IdeaProjects\\moon_lander\\moon_lander\\src\\resources\\mp3\\fail.wav", false);
+            failMusic = new MP3Player("C:\\summerProject-master\\summerProject-master\\src\\resources\\mp3\\fail.wav", false);
             failMusic.start();
 
 
