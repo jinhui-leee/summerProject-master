@@ -16,7 +16,11 @@ import java.util.logging.Logger;
 public class Enemy {
     BufferedImage enemyImg;
 
-    int x, y;
+    public int x, y;
+
+    public int enemyImgWidth;
+
+    public int enemyImgHeight;
     private Random random;
 
     public Enemy() {
@@ -41,6 +45,9 @@ public class Enemy {
         catch (IOException ex) {
             Logger.getLogger(PlayerRocket.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        enemyImgWidth = enemyImg.getWidth();
+        enemyImgHeight = enemyImg.getHeight();
     }
 
 
@@ -56,6 +63,30 @@ public class Enemy {
 
     }
 
+    public Boolean isCrashed(int rocketX1, int rocketY1, int width, int Height) {
 
+        int rocketX2 = rocketX1 + width;
+        int rocketY2 = rocketY1 + Height;
+        if (rocketX1 >= x && rocketX1 <= x + enemyImgWidth) {
+            return true;
+        }
+        if (rocketX2 >= x && rocketX2 <= x + enemyImgWidth) {
+            return true;
+        }
+        if (rocketY1 >= y && rocketY1 <= y + enemyImgHeight) {
+            return true;
+        }
+        if (rocketY2 >= y && rocketY2 <= y + enemyImgHeight) {
+            return true;
+        }
+        return false;
+    }
 
+    public int getX() {
+        return x;
+    }
+
+    public  int getY(){
+        return y;
+    }
 }

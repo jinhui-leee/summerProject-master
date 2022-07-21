@@ -6,6 +6,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -31,6 +32,12 @@ public class Game {
     private LandingArea landingArea;
 
     /**
+     * Enemy destroys a rocket when touched
+     */
+    private Enemy []enemy;
+
+
+    /**
      * Game background image.
      */
     private BufferedImage backgroundImg;
@@ -46,7 +53,6 @@ public class Game {
 
     private long minimum;
 
-    Enemy []enemy;
 
 
     public Game()
@@ -155,6 +161,15 @@ public class Game {
                 playerRocket.crashed = true;
 
             Framework.gameState = Framework.GameState.GAMEOVER;
+        }
+
+        for (int i=0; i<enemy.length; i++) {
+            if (enemy[i].isCrashed(playerRocket.x, playerRocket.y, playerRocket.rocketImgWidth, playerRocket.rocketImgHeight))
+            {
+                playerRocket.crashed = true;
+                Framework.gameState = Framework.GameState.GAMEOVER;
+
+            }
         }
     }
 
