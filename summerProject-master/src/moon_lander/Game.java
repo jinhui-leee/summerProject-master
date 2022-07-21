@@ -46,7 +46,7 @@ public class Game {
 
     private long minimum;
 
-    Enemy enemy;
+    Enemy []enemy;
 
 
     public Game()
@@ -86,6 +86,10 @@ public class Game {
     {
         playerRocket = new PlayerRocket();
         landingArea  = new LandingArea();
+        enemy = new Enemy[5];
+        for (int i=0; i<enemy.length; i++) {
+            enemy[i] = new Enemy();
+        }
 
     }
 
@@ -115,6 +119,11 @@ public class Game {
     public void RestartGame()
     {
         playerRocket.ResetPlayer();
+        for (int i=0; i<enemy.length; i++) {
+            enemy[i].resetXY();
+
+        }
+
     }
 
 
@@ -162,6 +171,10 @@ public class Game {
         landingArea.Draw(g2d);
 
         playerRocket.Draw(g2d);
+        for (int i=0; i<enemy.length; i++) {
+            enemy[i].Draw(g2d); //장애물 랜덤 생성
+
+        }
     }
 
 

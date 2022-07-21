@@ -7,25 +7,30 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.net.URL;
+import java.util.Random;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class Enemy {
     BufferedImage enemyImg;
+
     int x, y;
-    int width = enemyImg.getWidth(null);
-    int height = enemyImg.getHeight(null);
+    private Random random;
 
-    int x2 = x + width;
-    int y2 = y + height;
-
-    public Enemy(int x, int y) {
+    public Enemy() {
+        Initialize();
         loadContent();
+        x = random.nextInt(Framework.frameWidth - enemyImg.getWidth());
+        y = random.nextInt(Framework.frameHeight - enemyImg.getHeight());
 
-        this.x = x;
-        this.y = y;
     }
+
+    private void Initialize() {
+        random = new Random();
+    }
+
 
     public void loadContent() {
         try
@@ -37,4 +42,20 @@ public class Enemy {
             Logger.getLogger(PlayerRocket.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+
+    public void Draw(Graphics2D g2d) {
+        g2d.drawImage(enemyImg, x, y, null);
+
+    }
+
+    public void resetXY() {
+        x = random.nextInt(Framework.frameWidth - enemyImg.getWidth());
+        y = random.nextInt(Framework.frameHeight - enemyImg.getHeight());
+
+
+    }
+
+
+
 }
