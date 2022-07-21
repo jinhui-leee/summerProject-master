@@ -167,7 +167,7 @@ public class Game {
             if (enemy[i].isCrashed(playerRocket.x, playerRocket.y, playerRocket.rocketImgWidth, playerRocket.rocketImgHeight))
             {
                 playerRocket.crashed = true;
-                //Framework.gameState = Framework.GameState.GAMEOVER;
+                Framework.gameState = Framework.GameState.GAMEOVER;
 
             }
         }
