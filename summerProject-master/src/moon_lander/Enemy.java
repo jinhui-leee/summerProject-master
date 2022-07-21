@@ -67,18 +67,18 @@ public class Enemy {
 
         int rocketX2 = rocketX1 + width;
         int rocketY2 = rocketY1 + Height;
+
         if (rocketX1 >= x && rocketX1 <= x + enemyImgWidth) {
-            return true;
+            if (rocketX2 >= x && rocketX2 <= x + enemyImgWidth) {
+                if (rocketY1 >= y && rocketY1 <= y + enemyImgHeight) {
+                    if (rocketY2 >= y && rocketY2 <= y + enemyImgHeight) {
+                        return true;
+                    }
+                }
+
+            }
         }
-        if (rocketX2 >= x && rocketX2 <= x + enemyImgWidth) {
-            return true;
-        }
-        if (rocketY1 >= y && rocketY1 <= y + enemyImgHeight) {
-            return true;
-        }
-        if (rocketY2 >= y && rocketY2 <= y + enemyImgHeight) {
-            return true;
-        }
+
         return false;
     }
 
