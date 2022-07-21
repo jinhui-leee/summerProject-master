@@ -183,7 +183,7 @@ public class Game {
         {
             g2d.drawString("You have successfully landed!", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3);
             g2d.drawString("You have landed in " + gameTime / Framework.secInNanosec + " seconds.", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3 + 20);
-            g2d.drawString("You have minimum record " + minimum / Framework.secInNanosec + " seconds.", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3 + 40);
+            g2d.drawString("Your shortest time is  " + minimum / Framework.secInNanosec + " seconds.", Framework.frameWidth / 2 - 105, Framework.frameHeight / 3 + 40);
 
             timeCompare();
 

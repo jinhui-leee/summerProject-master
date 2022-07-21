@@ -270,7 +270,8 @@ public class PlayerRocket {
     {
         g2d.setColor(Color.white);
         g2d.drawString("Rocket coordinates: " + x + " : " + y, 5, 15);
-        
+
+
         // If the rocket is landed.
         if(landed)
         {
