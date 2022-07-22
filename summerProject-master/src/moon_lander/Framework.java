@@ -166,28 +166,14 @@ public class Framework extends Canvas {
         {
             URL moonLanderMenuImgUrl = this.getClass().getResource("/resources/images/menu.jpg");
             moonLanderMenuImg = ImageIO.read(moonLanderMenuImgUrl);
-        }
-        catch (IOException ex) {
-            Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-        //로켓 선택 화면
-        try
-        {
             URL moonLanderOptionImgUrl = this.getClass().getResource("/resources/images/rocket_select.png");
             moonLanderOptionImg = ImageIO.read(moonLanderOptionImgUrl);
 
-        }
-        catch (IOException ex)
-        {
-            Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        //설명 화면
-        try
-        {
             URL moonLanderDescriptionUrl = this.getClass().getResource("/resources/images/game_description.png");
             moonLanderDescriptionImg = ImageIO.read(moonLanderDescriptionUrl);
+
+
         }
         catch (IOException ex) {
             Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);
@@ -214,6 +200,7 @@ public class Framework extends Canvas {
                 descriptionButton.setVisible(false);
                 descriptionButton.setFocusable(false);
                 startButton.setFocusable(false);
+                setLayout(null);
                 gameState = GameState.OPTIONS;
                 selectCharacter();
             }
@@ -235,6 +222,7 @@ public class Framework extends Canvas {
                 descriptionButton.setVisible(false);
                 descriptionButton.setFocusable(false);
                 startButton.setFocusable(false);
+                setLayout(null);
                 gameState = GameState.DESCRIPTION;
 
             }
