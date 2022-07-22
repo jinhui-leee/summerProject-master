@@ -72,7 +72,7 @@ public class Framework extends Canvas {
     private Game game;
 
     //Background music player
-    MP3Player mp3Background;
+    private MP3Player mp3Background;
 
 
     /**
