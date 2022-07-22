@@ -37,12 +37,10 @@ public class Enemy {
 
 
     public void loadContent() {
-        try
-        {
+        try {
             URL enemyImgUrl = this.getClass().getResource("/resources/images/enemy.png");
             enemyImg = ImageIO.read(enemyImgUrl);
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(PlayerRocket.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -67,7 +65,7 @@ public class Enemy {
 
         int rocketX2 = rocketX1 + width;
         int rocketY2 = rocketY1 + Height;
-        if (rocketX1 >= x && rocketX1 <= x + enemyImgWidth) {
+        if (rocketX1 >= x && rocketX1 <= x + enemyImgWidth || rocketX2 >= x && rocketX2 <= x + enemyImgWidth) {
             if (rocketY1 >= y && rocketY1 <= y + enemyImgHeight) {
                 return true;
             }
@@ -75,23 +73,9 @@ public class Enemy {
                 return true;
             }
         }
-        if (rocketX2 >= x && rocketX2 <= x + enemyImgWidth) {
-            if (rocketY1 >= y && rocketY1 <= y + enemyImgHeight) {
-                return true;
-            }
-            if (rocketY2 >= y && rocketY2 <= y + enemyImgHeight) {
-                return true;
-            }
-        }
+
 
         return false;
     }
-
-    public int getX() {
-        return x;
-    }
-
-    public  int getY(){
-        return y;
-    }
 }
+
