@@ -202,7 +202,6 @@ public class Framework extends Canvas {
                 startButton.setFocusable(false);
                 setLayout(null);
                 gameState = GameState.OPTIONS;
-                selectCharacter();
             }
         });
 
@@ -359,17 +358,7 @@ public class Framework extends Canvas {
         pinkRocketButton.setFocusable(false);
     }
 
-    private void selectCharacter()
-    {
 
-        add(rocketButton);
-        add(redRocketButton);
-        add(yellowRocketButton);
-        add(greenRocketButton);
-        add(blueRocketButton);
-        add(pinkRocketButton);
-
-    }
 
 
 
@@ -405,7 +394,12 @@ public class Framework extends Canvas {
                     add(descriptionButton);
                     break;
                 case OPTIONS:
-                    //...
+                    add(rocketButton);
+                    add(redRocketButton);
+                    add(yellowRocketButton);
+                    add(greenRocketButton);
+                    add(blueRocketButton);
+                    add(pinkRocketButton);
                     break;
                 case GAME_CONTENT_LOADING:
                     //...
@@ -483,7 +477,7 @@ public class Framework extends Canvas {
             case OPTIONS:
                 g2d.drawImage(moonLanderOptionImg, 0, 0, frameWidth, frameHeight, null);
                 g2d.setColor(Color.white);
-                g2d.drawString("스페이스 바를 누르면 기본 로켓으로 시작합니다",270, frameHeight - 5);
+                g2d.drawString("로켓을 클릭하면 선택한 로켓으로 게임이 시작됩니다",250, frameHeight - 5);
                 break;
             case GAME_CONTENT_LOADING:
                 g2d.setColor(Color.white);
@@ -556,7 +550,6 @@ public class Framework extends Canvas {
                 break;
             case DESCRIPTION:
                 gameState = GameState.OPTIONS;
-                selectCharacter();
                 break;
             case OPTIONS:
                 break;
