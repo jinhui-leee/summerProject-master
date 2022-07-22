@@ -125,6 +125,7 @@ public class Game {
     public void RestartGame()
     {
         playerRocket.ResetPlayer();
+
         for (int i=0; i<enemy.length; i++) {
             enemy[i].resetXY(playerRocket.rocketImgHeight, playerRocket.y, landingArea.y);
 
@@ -163,6 +164,7 @@ public class Game {
             Framework.gameState = Framework.GameState.GAMEOVER;
         }
 
+        //장애물과 닿으면 crashed
         for (int i=0; i<enemy.length; i++) {
             if (enemy[i].isCrashed(playerRocket.x, playerRocket.y, playerRocket.rocketImgWidth, playerRocket.rocketImgHeight))
             {
@@ -185,9 +187,10 @@ public class Game {
 
         landingArea.Draw(g2d);
 
+        //장애물 랜덤 생성
         playerRocket.Draw(g2d);
         for (int i=0; i<enemy.length; i++) {
-            enemy[i].Draw(g2d); //장애물 랜덤 생성
+            enemy[i].Draw(g2d);
 
         }
     }
