@@ -94,7 +94,7 @@ public class Game {
         landingArea  = new LandingArea();
         enemy = new Enemy[5];
         for (int i=0; i<enemy.length; i++) {
-            enemy[i] = new Enemy();
+            enemy[i] = new Enemy(playerRocket.rocketImgHeight, playerRocket.y, landingArea.y);
         }
 
     }
@@ -126,7 +126,7 @@ public class Game {
     {
         playerRocket.ResetPlayer();
         for (int i=0; i<enemy.length; i++) {
-            enemy[i].resetXY();
+            enemy[i].resetXY(playerRocket.rocketImgHeight, playerRocket.y, landingArea.y);
 
         }
 

@@ -21,19 +21,19 @@ public class Enemy {
     public int enemyImgWidth;
 
     public int enemyImgHeight;
+
+    private PlayerRocket playerRocket;
     private Random random;
 
-    public Enemy() {
+    public Enemy(int playerRocketHeight, int playerRocketY, int landingAreaY) {
         Initialize();
         loadContent();
-        x = random.nextInt(Framework.frameWidth - enemyImg.getWidth());
-        y = random.nextInt(Framework.frameHeight - enemyImg.getHeight());
+        resetXY(playerRocketHeight,playerRocketY,landingAreaY);
+
 
     }
 
-    private void Initialize() {
-        random = new Random();
-    }
+    private void Initialize() { random = new Random(); }
 
 
     public void loadContent() {
@@ -54,9 +54,9 @@ public class Enemy {
 
     }
 
-    public void resetXY() {
-        x = random.nextInt(Framework.frameWidth - enemyImg.getWidth());
-        y = random.nextInt(Framework.frameHeight - enemyImg.getHeight());
+    public void resetXY(int playerRocketHeight, int playerRocketY, int landingAreaY) {
+        x = random.nextInt(Framework.frameWidth - enemyImgWidth);
+        y = random.nextInt(landingAreaY - 2*playerRocketHeight - playerRocketY - enemyImgHeight) + playerRocketHeight + playerRocketY;
 
 
     }
@@ -65,16 +65,13 @@ public class Enemy {
 
         int rocketX2 = rocketX1 + width;
         int rocketY2 = rocketY1 + Height;
-        if (rocketX1 >= x && rocketX1 <= x + enemyImgWidth || rocketX2 >= x && rocketX2 <= x + enemyImgWidth) {
-            if (rocketY1 >= y && rocketY1 <= y + enemyImgHeight) {
-                return true;
-            }
-            if (rocketY2 >= y && rocketY2 <= y + enemyImgHeight) {
+        if (rocketX1 >= x && rocketX1 <= x + enemyImgWidth || rocketX2 >= x && rocketX2 <= x + enemyImgWidth)
+        {
+            if (rocketY1 >= y && rocketY1 <= y + enemyImgHeight || rocketY2 >= y && rocketY2 <= y + enemyImgHeight)
+            {
                 return true;
             }
         }
-
-
         return false;
     }
 }
