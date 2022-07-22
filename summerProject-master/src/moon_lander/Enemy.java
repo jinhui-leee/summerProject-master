@@ -22,7 +22,6 @@ public class Enemy {
 
     public int enemyImgHeight;
 
-    private PlayerRocket playerRocket;
     private Random random;
 
     public Enemy(int playerRocketHeight, int playerRocketY, int landingAreaY) {
