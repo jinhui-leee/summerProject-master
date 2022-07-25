@@ -72,7 +72,7 @@ public class Framework extends Canvas {
     private Game game;
 
     //Background music player
-    MP3Player mp3Background;
+    private MP3Player mp3Background;
 
 
     /**
@@ -166,28 +166,14 @@ public class Framework extends Canvas {
         {
             URL moonLanderMenuImgUrl = this.getClass().getResource("/resources/images/menu.jpg");
             moonLanderMenuImg = ImageIO.read(moonLanderMenuImgUrl);
-        }
-        catch (IOException ex) {
-            Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-        //로켓 선택 화면
-        try
-        {
             URL moonLanderOptionImgUrl = this.getClass().getResource("/resources/images/rocket_select.png");
             moonLanderOptionImg = ImageIO.read(moonLanderOptionImgUrl);
 
-        }
-        catch (IOException ex)
-        {
-            Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        //설명 화면
-        try
-        {
             URL moonLanderDescriptionUrl = this.getClass().getResource("/resources/images/game_description.png");
             moonLanderDescriptionImg = ImageIO.read(moonLanderDescriptionUrl);
+
+
         }
         catch (IOException ex) {
             Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);
@@ -214,12 +200,11 @@ public class Framework extends Canvas {
                 descriptionButton.setVisible(false);
                 descriptionButton.setFocusable(false);
                 startButton.setFocusable(false);
+                setLayout(null);
                 gameState = GameState.OPTIONS;
-                selectCharacter();
             }
         });
 
-        add(startButton);
 
         //설명 버튼
         descriptionButton.setBounds(410,350,135,100);
@@ -235,12 +220,120 @@ public class Framework extends Canvas {
                 descriptionButton.setVisible(false);
                 descriptionButton.setFocusable(false);
                 startButton.setFocusable(false);
+                setLayout(null);
                 gameState = GameState.DESCRIPTION;
 
             }
         });
 
-        add(descriptionButton);
+
+        //rocket(기본)
+        rocketImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\rocket.png");
+        rocketButton = new JButton(rocketImg);
+        rocketButton.setBounds(200,200,50,100);
+        rocketButton.setBorderPainted(false);
+        rocketButton.setContentAreaFilled(false);
+        rocketButton.setFocusPainted(false);
+        rocketButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                rocketChoice = RocketChoice.ORI;
+                buttonLoseFocus();
+                rocketRemove();
+                newGame();
+            }
+        });
+
+        //red rocket
+        redRocketImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\red_rocket.png");
+        redRocketButton = new JButton(redRocketImg);
+        redRocketButton.setBounds(350,200,50,100);
+        redRocketButton.setBorderPainted(false);
+        redRocketButton.setContentAreaFilled(false);
+        redRocketButton.setFocusPainted(false);
+        redRocketButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                rocketChoice = RocketChoice.RED;
+                buttonLoseFocus();
+                rocketRemove();
+                newGame();
+            }
+        });
+
+        //yellow rocket
+        yellowRocketImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\yellow_rocket.png");
+        yellowRocketButton = new JButton(yellowRocketImg);
+        yellowRocketButton.setBounds(500,200,50,100);
+        yellowRocketButton.setBorderPainted(false);
+        yellowRocketButton.setContentAreaFilled(false);
+        yellowRocketButton.setFocusPainted(false);
+        yellowRocketButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                rocketChoice = RocketChoice.YELLOW;
+                buttonLoseFocus();
+                rocketRemove();
+                newGame();
+            }
+        });
+
+        //green rocket
+        greenRocketImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\green_rocket.png");
+        greenRocketButton = new JButton(greenRocketImg);
+        greenRocketButton.setBounds(200,350,50,100);
+        greenRocketButton.setBorderPainted(false);
+        greenRocketButton.setContentAreaFilled(false);
+        greenRocketButton.setFocusPainted(false);
+        greenRocketButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                rocketChoice = RocketChoice.GREEN;
+                buttonLoseFocus();
+                rocketRemove();
+                newGame();
+            }
+        });
+
+        //blue rocket
+        blueRocketImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\blue_rocket.png");
+        blueRocketButton = new JButton(blueRocketImg);
+        blueRocketButton.setBounds(350,350,50,100);
+        blueRocketButton.setBorderPainted(false);
+        blueRocketButton.setContentAreaFilled(false);
+        blueRocketButton.setFocusPainted(false);
+        blueRocketButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                rocketChoice = RocketChoice.BLUE;
+                buttonLoseFocus();
+                rocketRemove();
+                newGame();
+            }
+        });
+
+        //pink rocket
+        pinkRocketImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\pink_rocket.png");
+        pinkRocketButton = new JButton(pinkRocketImg);
+        pinkRocketButton.setBounds(500,350,50,100);
+        pinkRocketButton.setBorderPainted(false);
+        pinkRocketButton.setContentAreaFilled(false);
+        pinkRocketButton.setFocusPainted(false);
+        pinkRocketButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                rocketChoice = RocketChoice.PINK;
+                buttonLoseFocus();
+                rocketRemove();
+                newGame();
+            }
+        });
 
     }
 
@@ -265,124 +358,7 @@ public class Framework extends Canvas {
         pinkRocketButton.setFocusable(false);
     }
 
-    private void selectCharacter()
-    {
-        //rocket(기본)
-        rocketImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\rocket.png");
-        rocketButton = new JButton(rocketImg);
-        rocketButton.setBounds(200,200,50,100);
-        rocketButton.setBorderPainted(false);
-        rocketButton.setContentAreaFilled(false);
-        rocketButton.setFocusPainted(false);
-        rocketButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                super.mousePressed(e);
-                rocketChoice = RocketChoice.ORI;
-                buttonLoseFocus();
-                rocketRemove();
-                newGame();
-            }
-        });
 
-        add(rocketButton);
-
-        //red rocket
-        redRocketImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\red_rocket.png");
-        redRocketButton = new JButton(redRocketImg);
-        redRocketButton.setBounds(350,200,50,100);
-        redRocketButton.setBorderPainted(false);
-        redRocketButton.setContentAreaFilled(false);
-        redRocketButton.setFocusPainted(false);
-        redRocketButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                super.mousePressed(e);
-                rocketChoice = RocketChoice.RED;
-                buttonLoseFocus();
-                rocketRemove();
-                newGame();
-            }
-        });
-        add(redRocketButton);
-
-        //yellow rocket
-        yellowRocketImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\yellow_rocket.png");
-        yellowRocketButton = new JButton(yellowRocketImg);
-        yellowRocketButton.setBounds(500,200,50,100);
-        yellowRocketButton.setBorderPainted(false);
-        yellowRocketButton.setContentAreaFilled(false);
-        yellowRocketButton.setFocusPainted(false);
-        yellowRocketButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                super.mousePressed(e);
-                rocketChoice = RocketChoice.YELLOW;
-                buttonLoseFocus();
-                rocketRemove();
-                newGame();
-            }
-        });
-        add(yellowRocketButton);
-
-        //green rocket
-        greenRocketImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\green_rocket.png");
-        greenRocketButton = new JButton(greenRocketImg);
-        greenRocketButton.setBounds(200,350,50,100);
-        greenRocketButton.setBorderPainted(false);
-        greenRocketButton.setContentAreaFilled(false);
-        greenRocketButton.setFocusPainted(false);
-        greenRocketButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                super.mousePressed(e);
-                rocketChoice = RocketChoice.GREEN;
-                buttonLoseFocus();
-                rocketRemove();
-                newGame();
-            }
-        });
-        add(greenRocketButton);
-
-        //blue rocket
-        blueRocketImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\blue_rocket.png");
-        blueRocketButton = new JButton(blueRocketImg);
-        blueRocketButton.setBounds(350,350,50,100);
-        blueRocketButton.setBorderPainted(false);
-        blueRocketButton.setContentAreaFilled(false);
-        blueRocketButton.setFocusPainted(false);
-        blueRocketButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                super.mousePressed(e);
-                rocketChoice = RocketChoice.BLUE;
-                buttonLoseFocus();
-                rocketRemove();
-                newGame();
-            }
-        });
-        add(blueRocketButton);
-
-        //pink rocket
-        pinkRocketImg = new ImageIcon("C:\\summerProject-master\\summerProject-master\\src\\resources\\images\\pink_rocket.png");
-        pinkRocketButton = new JButton(pinkRocketImg);
-        pinkRocketButton.setBounds(500,350,50,100);
-        pinkRocketButton.setBorderPainted(false);
-        pinkRocketButton.setContentAreaFilled(false);
-        pinkRocketButton.setFocusPainted(false);
-        pinkRocketButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                super.mousePressed(e);
-                rocketChoice = RocketChoice.PINK;
-                buttonLoseFocus();
-                rocketRemove();
-                newGame();
-            }
-        });
-        add(pinkRocketButton);
-
-    }
 
 
 
@@ -414,10 +390,16 @@ public class Framework extends Canvas {
                     //...
                     break;
                 case MAIN_MENU:
-                    //...
+                    add(startButton);
+                    add(descriptionButton);
                     break;
                 case OPTIONS:
-                    //...
+                    add(rocketButton);
+                    add(redRocketButton);
+                    add(yellowRocketButton);
+                    add(greenRocketButton);
+                    add(blueRocketButton);
+                    add(pinkRocketButton);
                     break;
                 case GAME_CONTENT_LOADING:
                     //...
@@ -495,7 +477,7 @@ public class Framework extends Canvas {
             case OPTIONS:
                 g2d.drawImage(moonLanderOptionImg, 0, 0, frameWidth, frameHeight, null);
                 g2d.setColor(Color.white);
-                g2d.drawString("스페이스 바를 누르면 기본 로켓으로 시작합니다",270, frameHeight - 5);
+                g2d.drawString("로켓을 클릭하면 선택한 로켓으로 게임이 시작됩니다",250, frameHeight - 5);
                 break;
             case GAME_CONTENT_LOADING:
                 g2d.setColor(Color.white);
@@ -568,9 +550,6 @@ public class Framework extends Canvas {
                 break;
             case DESCRIPTION:
                 gameState = GameState.OPTIONS;
-                selectCharacter();
-                break;
-            case OPTIONS:
                 break;
             case GAMEOVER:
                 if(e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER)

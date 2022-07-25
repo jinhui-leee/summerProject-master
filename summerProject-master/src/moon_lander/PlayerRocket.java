@@ -134,28 +134,12 @@ public class PlayerRocket {
     {
         try
         {
+            //rocket image
             URL rocketImgUrl = this.getClass().getResource("/resources/images/rocket.png");
             rocketImg = ImageIO.read(rocketImgUrl);
             rocketImgWidth = rocketImg.getWidth();
             rocketImgHeight = rocketImg.getHeight();
 
-            URL rocketLandedImgUrl = this.getClass().getResource("/resources/images/rocket_landed.png");
-            rocketLandedImg = ImageIO.read(rocketLandedImgUrl);
-
-
-            URL rocketCrashedImgUrl = this.getClass().getResource("/resources/images/rocket_crashed.png");
-            rocketCrashedImg = ImageIO.read(rocketCrashedImgUrl);
-
-
-            URL rocketFireImgUrl = this.getClass().getResource("/resources/images/rocket_fire.png");
-            rocketFireImg = ImageIO.read(rocketFireImgUrl);
-        }
-        catch (IOException ex) {
-            Logger.getLogger(PlayerRocket.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try
-        {
             URL redRocketImgUrl = this.getClass().getResource("/resources/images/red_rocket.png");
             redRocketImg = ImageIO.read(redRocketImgUrl);
 
@@ -171,14 +155,10 @@ public class PlayerRocket {
             URL pinkRocketImgUrl = this.getClass().getResource("/resources/images/pink_rocket.png");
             pinkRocketImg = ImageIO.read(pinkRocketImgUrl);
 
-        }
-        catch (IOException ex) {
-            Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            //landed rocket image
+            URL rocketLandedImgUrl = this.getClass().getResource("/resources/images/rocket_landed.png");
+            rocketLandedImg = ImageIO.read(rocketLandedImgUrl);
 
-
-        try
-        {
             URL redRocketLandedImgUrl = this.getClass().getResource("/resources/images/red_rocketLanded.png");
             redRocketLandedImg = ImageIO.read(redRocketLandedImgUrl);
 
@@ -193,13 +173,11 @@ public class PlayerRocket {
 
             URL pinkRocketLandedImgUrl = this.getClass().getResource("/resources/images/pink_rocketLanded.png");
             pinkRocketLandedImg = ImageIO.read(pinkRocketLandedImgUrl);
-        }
-        catch (IOException ex) {
-            Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-        try
-        {
+            //crashed rocket image
+            URL rocketCrashedImgUrl = this.getClass().getResource("/resources/images/rocket_crashed.png");
+            rocketCrashedImg = ImageIO.read(rocketCrashedImgUrl);
+
             URL redRocketCrashedImgUrl = this.getClass().getResource("/resources/images/red_rocketCrashed.png");
             redRocketCrashedImg = ImageIO.read(redRocketCrashedImgUrl);
 
@@ -214,11 +192,14 @@ public class PlayerRocket {
 
             URL pinkRocketCrashedImgUrl = this.getClass().getResource("/resources/images/pink_rocketCrashed.png");
             pinkRocketCrashedImg = ImageIO.read(pinkRocketCrashedImgUrl);
+
+            //rocket fire image
+            URL rocketFireImgUrl = this.getClass().getResource("/resources/images/rocket_fire.png");
+            rocketFireImg = ImageIO.read(rocketFireImgUrl);
         }
         catch (IOException ex) {
-            Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PlayerRocket.class.getName()).log(Level.SEVERE, null, ex);
         }
-
 
     }
     
@@ -270,7 +251,8 @@ public class PlayerRocket {
     {
         g2d.setColor(Color.white);
         g2d.drawString("Rocket coordinates: " + x + " : " + y, 5, 15);
-        
+
+
         // If the rocket is landed.
         if(landed)
         {
