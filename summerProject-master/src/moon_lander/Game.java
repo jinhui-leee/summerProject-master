@@ -85,6 +85,7 @@ public class Game {
             }
         }
     }
+
     /**
      * Set variables and objects for the game.
      */
