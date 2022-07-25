@@ -55,7 +55,7 @@ public class Framework extends Canvas {
     /**
      * Possible states of the game
      */
-    public static enum GameState{STARTING, VISUALIZING, GAME_CONTENT_LOADING, MAIN_MENU, DESCRIPTION, OPTIONS, PLAYING, GAMEOVER, DESTROYED} //열거체 GameState
+    public static enum GameState{STARTING, VISUALIZING, GAME_CONTENT_LOADING, MAIN_MENU, DESCRIPTION, OPTIONS, PLAYING, GAMEOVER, DESTROYED}
     /**
      * Current state of the game
      */
@@ -66,6 +66,7 @@ public class Framework extends Canvas {
      */
     static long gameTime;
     // It is used for calculating elapsed time.
+
     private long lastTime;
 
     // The actual game

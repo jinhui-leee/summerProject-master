@@ -11,6 +11,7 @@ public class MP3Player {
     private boolean isLoop;
 
     public MP3Player(String pathName, boolean isLoop) {
+        this.isLoop = isLoop;
         try {
             clip = AudioSystem.getClip();
             audioFile = new File(pathName);
